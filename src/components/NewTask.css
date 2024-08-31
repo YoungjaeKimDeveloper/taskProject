@@ -1,0 +1,24 @@
+.newTask {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.newTask-form {
+  width: 80%;
+}
+.new-Task-form-div {
+  display: flex;
+  flex-direction: column;
+}
+.buttons {
+  display: flex;
+  column-gap: 2rem;
+  margin-top: 2rem;
+}
+.buttons button {
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  border-radius: 2rem;
+}

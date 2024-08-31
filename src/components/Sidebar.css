@@ -1,0 +1,25 @@
+.sideBar {
+  background-color: black;
+  color: white;
+}
+.sideBar-top {
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 2rem;
+}
+.sideBar-top h1 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.sideBar-top button {
+  display: inline-flex;
+  background-color: rgb(91, 100, 100);
+  margin: auto;
+  padding: 20px;
+  text-transform: uppercase;
+  border-radius: 20px;
+  letter-spacing: 2px;
+}
