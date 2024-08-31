@@ -7,6 +7,7 @@ const Sidebar = ({ handleTaskPage }) => {
       <div className="sideBar-top">
         <h1>Your Projects</h1>
         <button onClick={handleTaskPage}>+Add Project</button>
+        <p>Hello</p>
       </div>
     </div>
   );
