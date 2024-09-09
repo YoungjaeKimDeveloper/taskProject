@@ -1,5 +1,6 @@
 import React from "react";
 import "./Modal.css";
+import { FaTrash } from "react-icons/fa";
 
 const Modal = ({ modalOpener, selectedTask }) => {
   console.log(selectedTask);
@@ -8,9 +9,10 @@ const Modal = ({ modalOpener, selectedTask }) => {
       <p className="back" onClick={modalOpener}>
         back
       </p>
-      <i class="fa-solid fa-arrow-right"></i>
+      <i className="fa-solid fa-arrow-right"></i>
       <div className="modal-content">
         <p className="title">{selectedTask.title}</p>
+        <FaTrash />
         <p className="content">{selectedTask.description}</p>
       </div>
     </div>

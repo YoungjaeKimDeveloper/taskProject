@@ -4,10 +4,6 @@ import Main from "./components/Main";
 import NewTask from "./components/NewTask";
 import Modal from "./components/Modal";
 // Get the data from local storage
-const getInitialTasks = () => {
-  const savedTasks = localStorage.getItem("tasks");
-  return savedTasks ? JSON.parse(savedTasks) : [];
-};
 
 function App() {
   const [isTaskPage, setisTaskPage] = useState(false);
@@ -16,7 +12,15 @@ function App() {
   };
   //
   // Tasks Part
+  const getInitialTasks = () => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  };
+  useEffect(() => {
+    getInitialTasks();
+  }, []);
   const [listOfTasks, setListOfTask] = useState(getInitialTasks);
+
   const [task, setTask] = useState({
     title: "",
     description: "",
