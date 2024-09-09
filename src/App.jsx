@@ -48,6 +48,9 @@ function App() {
     setIsModalOpen((prev) => !prev);
     selectTask(task);
   };
+  const modalCloser = () => {
+    setIsModalOpen((prev) => !prev);
+  };
   const selectTask = (task) => setSelectedTask(task);
   // Filter Function
   const deleteTask = (toDeleteTask) => {
@@ -55,7 +58,7 @@ function App() {
       (tasks) => toDeleteTask.title !== tasks.title
     );
     setListOfTask(filteredTask);
-    handleTaskPage();
+    modalCloser();
   };
   //Testing Console
   console.log(task.title);
