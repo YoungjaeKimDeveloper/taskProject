@@ -1,7 +1,12 @@
 import React from "react";
 import "./Sidebar.css";
 
-const Sidebar = ({ handleTaskPage, listOfTasks }) => {
+const Sidebar = ({
+  handleTaskPage,
+  listOfTasks,
+  modalOpener,
+  selectedTask,
+}) => {
   console.log(listOfTasks);
   return (
     <div className="sideBar">
@@ -9,7 +14,9 @@ const Sidebar = ({ handleTaskPage, listOfTasks }) => {
         <h1>Your Projects</h1>
         <button onClick={handleTaskPage}>+Add Project</button>
         {listOfTasks.map((task, index) => (
-          <p key={index}>{task?.title}123</p>
+          <p key={index} onClick={() => modalOpener(task)}>
+            {task?.title}
+          </p>
         ))}
       </div>
     </div>

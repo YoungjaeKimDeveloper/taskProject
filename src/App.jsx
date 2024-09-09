@@ -1,18 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
 import NewTask from "./components/NewTask";
+import Modal from "./components/Modal";
+// Get the data from local storage
+const getInitialTasks = () => {
+  const savedTasks = localStorage.getItem("tasks");
+  return savedTasks ? JSON.parse(savedTasks) : [];
+};
+
 function App() {
   const [isTaskPage, setisTaskPage] = useState(false);
   const handleTaskPage = () => {
     setisTaskPage((pageSwitch) => !pageSwitch);
   };
+  //
   // Tasks Part
-  const [listOfTasks, setListOfTask] = useState([]);
+  const [listOfTasks, setListOfTask] = useState(getInitialTasks);
   const [task, setTask] = useState({
-    title: "Write Your Title",
-    description: "Write Your Description",
+    title: "",
+    description: "",
   });
+
+  // set the value from local Storage
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(listOfTasks));
+  }, [listOfTasks]);
+
+  console.log(JSON.stringify(listOfTasks));
   // Handle Task
   const handleTask = (target, e) => {
     setTask((prev) => ({ ...prev, [target]: e }));
@@ -20,21 +35,45 @@ function App() {
   const addTask = (task) => {
     setListOfTask((prev) => [...prev, task]);
     handleTaskPage();
+    setTask({ title: "", description: "" });
   };
+  // Modal Handler
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTask, setSelectedTask] = useState(null);
+  const modalOpener = (task) => {
+    setIsModalOpen((prev) => !prev);
+    selectTask(task);
+  };
+  const selectTask = (task) => setSelectedTask(task);
+  //Testing Console
   console.log(task.title);
   console.log(task.description);
   console.log(listOfTasks);
+  console.log(selectedTask);
   return (
     <div className="main">
-      <Sidebar
-        handleTaskPage={handleTaskPage}
-        listOfTasks={listOfTasks}
-        task={task}
-      />
-      {isTaskPage ? (
-        <NewTask handleTask={handleTask} addTask={addTask} task={task} />
+      {isModalOpen ? (
+        <Modal modalOpener={modalOpener} selectedTask={selectedTask} />
       ) : (
-        <Main />
+        <>
+          <Sidebar
+            handleTaskPage={handleTaskPage}
+            listOfTasks={listOfTasks}
+            task={task}
+            modalOpener={modalOpener}
+            selectTask={selectTask}
+          />
+          {isTaskPage ? (
+            <NewTask
+              handleTask={handleTask}
+              addTask={addTask}
+              task={task}
+              modalOpener={modalOpener}
+            />
+          ) : (
+            <Main handleTaskPage={handleTaskPage} />
+          )}
+        </>
       )}
     </div>
   );
