@@ -23,3 +23,6 @@
   border-radius: 20px;
   letter-spacing: 2px;
 }
+.side-title {
+  cursor: pointer;
+}

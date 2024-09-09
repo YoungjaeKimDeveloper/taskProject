@@ -14,7 +14,11 @@ const Sidebar = ({
         <h1>Your Projects</h1>
         <button onClick={handleTaskPage}>+Add Project</button>
         {listOfTasks.map((task, index) => (
-          <p key={index} onClick={() => modalOpener(task)}>
+          <p
+            key={index}
+            onClick={() => modalOpener(task)}
+            className="side-title"
+          >
             {task?.title}
           </p>
         ))}

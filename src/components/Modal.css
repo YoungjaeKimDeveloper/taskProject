@@ -14,9 +14,9 @@
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
-
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 .title {
   font-weight: bold;
@@ -46,4 +46,14 @@
   text-transform: uppercase;
   margin-left: 10px;
   cursor: pointer;
+}
+.delete-icon {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.delete-icon:hover {
+  color: chocolate;
 }

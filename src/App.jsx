@@ -10,7 +10,7 @@ function App() {
   const handleTaskPage = () => {
     setisTaskPage((pageSwitch) => !pageSwitch);
   };
-  //
+
   // Tasks Part
   const getInitialTasks = () => {
     const savedTasks = localStorage.getItem("tasks");
@@ -49,6 +49,14 @@ function App() {
     selectTask(task);
   };
   const selectTask = (task) => setSelectedTask(task);
+  // Filter Function
+  const deleteTask = (toDeleteTask) => {
+    const filteredTask = listOfTasks.filter(
+      (tasks) => toDeleteTask.title !== tasks.title
+    );
+    setListOfTask(filteredTask);
+    handleTaskPage();
+  };
   //Testing Console
   console.log(task.title);
   console.log(task.description);
@@ -57,7 +65,11 @@ function App() {
   return (
     <div className="main">
       {isModalOpen ? (
-        <Modal modalOpener={modalOpener} selectedTask={selectedTask} />
+        <Modal
+          modalOpener={modalOpener}
+          selectedTask={selectedTask}
+          deleteTask={deleteTask}
+        />
       ) : (
         <>
           <Sidebar
